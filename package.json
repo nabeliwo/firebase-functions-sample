@@ -1,0 +1,43 @@
+{
+  "name": "firebase-functions-sample",
+  "version": "1.0.0",
+  "description": "firebase-functions-sample",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next src/app",
+    "serve": "echo \"for details see:\n\thttps://github.com/firebase/firebase-tools/issues/535 \n\thttps://github.com/zeit/next.js/issues/3167\";",
+    "deploy": "firebase deploy",
+    "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
+    "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
+    "build-funcs": "babel \"src/functions\" --out-dir \"dist/functions\"",
+    "build-app": "next build \"src/app\"",
+    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\"",
+    "install-deps": "cd \"dist/functions\" && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nabeliwo/firebase-functions-sample.git"
+  },
+  "author": "nabeliwo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nabeliwo/firebase-functions-sample/issues"
+  },
+  "homepage": "https://github.com/nabeliwo/firebase-functions-sample#readme",
+  "dependencies": {
+    "firebase-admin": "^5.9.1",
+    "firebase-functions": "^0.8.1",
+    "next": "^5.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@firebase/app-types": "^0.1.2",
+    "cpx": "^1.5.0",
+    "prettier": "^1.11.1",
+    "rimraf": "^2.6.2"
+  }
+}
