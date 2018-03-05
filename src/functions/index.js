@@ -1,11 +1,26 @@
-const functions = require('firebase-functions')
-const next = require('next')
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev, conf: { distDir: 'next' } })
-const handle = app.getRequestHandler()
+import { nextApp as next } from "./app/app"
+import { mars } from "./worlds/mars"
+import { jupiter } from "./worlds/jupiter"
 
-exports.next = functions.https.onRequest((req, res) => {
-  console.log('File: ' + req.originalUrl) // log the page.js file that is being requested
-  return app.prepare().then(() => handle(req, res))
-})
+/*
+Namespace application services with function groups.
+Partially deploy namespaces for independent service updates.
+*/
+
+// SSR Next.js app Cloud Function used by Firebase Hosting
+// yarn deploy-app
+const app = {
+  next,
+  // other Hosting dependencies
+}
+
+// Mircoservices that make up the Greetings service
+// yarn deploy-functions
+const greetings = {
+  mars,
+  jupiter,
+  // other funcs
+}
+
+export { app, greetings }

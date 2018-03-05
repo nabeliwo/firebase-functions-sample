@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "next src/app",
-    "serve": "echo \"for details see:\n\thttps://github.com/firebase/firebase-tools/issues/535 \n\thttps://github.com/zeit/next.js/issues/3167\";",
     "deploy": "firebase deploy",
     "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
     "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
